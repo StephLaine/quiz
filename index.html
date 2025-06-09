@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game Website</title>
+    <!--Link CSS files-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="main">
+
+        <!-- Header section containing navbar and logo -->
+        <header class="header">
+            <a href="#" class="logo">Quiz</a>
+
+            <nav class="navbar">
+                <a href="#" class="active">Home</a>
+                <a href="#" id="leaderboard-nav">Leaderboard</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Another section for home content -->
+
+        <div class="container">
+            <section class="quiz-section">
+                <div class="quiz-box">
+                    <h1>Quiz</h1>
+                    <div class="quiz-header">
+                        <span>Welcome to Quiz Game</span>
+                        <span class="header-score">Score: 0 / 5</span>
+                    </div>
+
+                    <h2 class="question-text"></h2>
+
+                    <div class="option-list">
+                     
+                    </div> 
+
+                    <div class="quiz-footer">
+                        <span class="question-total"></span>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h2>Quiz Result!</h2>
+                    <div class="percentage-container">
+                        <div class="circular-progress">
+                            <span class="progress-value">0%</span>
+                        </div>
+                        <span class="score-text">Your Score 0 out of 5</span>
+                    </div>
+                    <div class="buttons">
+                        <button class="tryAgain-btn">Try Again</button>
+                        <button class="goHome-btn">Go To Home</button>
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <section class="home">
+                <div class="home-content">
+                    <h1>Quiz Game</h1>
+                    <p>Welcome to the
+                         Quiz game. After starting quiz you will get a quiz guide.</p>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+     <!-- New Leaderboard Section -->
+     <section class="leaderboard-section">
+        <div class="leaderboard-box">
+            <h1>🏆 Leaderboard</h1>
+            <div class="leaderboard-header">
+                <span>Top Quiz Champions</span>
+                <button class="back-home-btn">Back to Home</button>
+            </div>
+            
+            <div class="leaderboard-list">
+                <div class="leaderboard-item rank-1">
+                    <div class="rank-badge">1st</div>
+                    <div class="player-info">
+                        <span class="player-name">Alex Thunder</span>
+                        <span class="player-stats">Perfect Score Streak: 15</span>
+                    </div>
+                    <div class="player-score">5/5</div>
+                    <div class="trophy">👑</div>
+                </div>
+
+                <div class="leaderboard-item rank-2">
+                    <div class="rank-badge">2nd</div>
+                    <div class="player-info">
+                        <span class="player-name">Sarah Lightning</span>
+                        <span class="player-stats">Quiz Master</span>
+                    </div>
+                    <div class="player-score">5/5</div>
+                    <div class="trophy">🥈</div>
+                </div>
+
+                <div class="leaderboard-item rank-3">
+                    <div class="rank-badge">3rd</div>
+                    <div class="player-info">
+                        <span class="player-name">Mike Brainiac</span>
+                        <span class="player-stats">Speed Demon</span>
+                    </div>
+                    <div class="player-score">5/5</div>
+                    <div class="trophy">🥉</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">4th</div>
+                    <div class="player-info">
+                        <span class="player-name">Emma Genius</span>
+                        <span class="player-stats">Rising Star</span>
+                    </div>
+                    <div class="player-score">4/5</div>
+                    <div class="trophy">🌟</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">5th</div>
+                    <div class="player-info">
+                        <span class="player-name">David Smarty</span>
+                        <span class="player-stats">Consistent Player</span>
+                    </div>
+                    <div class="player-score">4/5</div>
+                    <div class="trophy">⭐</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">6th</div>
+                    <div class="player-info">
+                        <span class="player-name">Lisa Clever</span>
+                        <span class="player-stats">Knowledge Seeker</span>
+                    </div>
+                    <div class="player-score">4/5</div>
+                    <div class="trophy">🎯</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">7th</div>
+                    <div class="player-info">
+                        <span class="player-name">Ryan Quick</span>
+                        <span class="player-stats">Fast Learner</span>
+                    </div>
+                    <div class="player-score">3/5</div>
+                    <div class="trophy">🚀</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">8th</div>
+                    <div class="player-info">
+                        <span class="player-name">Jessica Wise</span>
+                        <span class="player-stats">Steady Climber</span>
+                    </div>
+                    <div class="player-score">3/5</div>
+                    <div class="trophy">📚</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">9th</div>
+                    <div class="player-info">
+                        <span class="player-name">Tom Bright</span>
+                        <span class="player-stats">Newcomer</span>
+                    </div>
+                    <div class="player-score">3/5</div>
+                    <div class="trophy">💫</div>
+                </div>
+
+                <div class="leaderboard-item">
+                    <div class="rank-badge">10th</div>
+                    <div class="player-info">
+                        <span class="player-name">Amy Sharp</span>
+                        <span class="player-stats">Improving Daily</span>
+                    </div>
+                    <div class="player-score">2/5</div>
+                    <div class="trophy">🎪</div>
+                </div>
+            </div>
+
+            <div class="leaderboard-footer">
+                <p>🎮 Think you can beat them? <span class="challenge-text">Start a quiz now!</span></p>
+                <button class="challenge-btn">Take Challenge</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Division for Quiz guide popup-->
+    <div class="popup-info">
+        <h2>Quiz Guide</h2>
+        <span class="info">1. You cannot skip any questions.</span>
+        <span class="info">2. Once attempt any question, you cannot go to previous question.</span>
+        <span class="info">3. After one answer is selected, other option will be disabled.</span>
+        <span class="info">4. You will be given total 5 questions.</span>
+        <span class="info">5. Concentrate on your Quiz, Don't try to cheat.</span>
+
+
+        <!--Buttons for starting quiz  -->
+        <div class="btn-group">
+            <button class="info-btn exit-btn">Exit Quiz</button>
+            <a href="#" class="info-btn continue-btn">Continue</a>
+        </div>
+    </div>
+
+    <!--Link Javascript files-->
+    <script src="script.js"></script>
+    <script src="questions.js"></script>
+
+    
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Nabin's Quiz</p>
+            <ul class="social-icons">
+                <li><a href="#" class="icon-link">Facebook</a></li>
+                <li><a href="#" class="icon-link">Twitter</a></li>
+                <li><a href="#" class="icon-link">Instagram</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+</body>
+</html>
