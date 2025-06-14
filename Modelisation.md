@@ -14,6 +14,8 @@ erDiagram
         string userId PK
         string phone
         string kycStatus
+        string email
+        string username
         timestamp createdAt
         number balanceHTG
     }
@@ -77,6 +79,8 @@ erDiagram
 {
   userId: "HT_50936324587", // Phone-based ID
   phone: "+50936324587",
+  email: "user@gmail.com",
+  username: "First Lastname"
   kycStatus: "verified", // pending/verified/rejected
   balanceHTG: 1500,
   created_at: firestore.Timestamp.now(),
