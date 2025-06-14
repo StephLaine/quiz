@@ -19,12 +19,32 @@ graph TD
 
 ## 🧩 Technical Stack
 
-### 🖥 Frontend (Next.js 14)
-| Component          | Technology               | Purpose                          |
-|--------------------|--------------------------|----------------------------------|
-| Quiz Interface     | Tailwind CSS + Framer Motion | Animated question transitions |
-| State Management   | Zustand                  | Client-side session tracking     |
-| Offline Support    | Workbox                  | Cached critical assets           |
+### 🖥 Frontend (React 18)
+
+| Component          | Technology Stack         | Purpose                                                                 | Haiti-Specific Optimization          |
+|--------------------|--------------------------|-------------------------------------------------------------------------|--------------------------------------|
+| Quiz Interface     | Chakra UI + Framer       | Mobile-responsive question flows with animations                        | Kreyòl/French language toggle        |
+| State Management   | Redux Toolkit            | Centralized store for quiz progress & user balance                      | Offline action queue for 2G/3G       |
+| Real-Time Updates  | Firebase SDK             | Live leaderboard and question sync                                      | Throttled updates for low bandwidth  |
+| Offline Support    | Service Workers + IndexedDB | Caches questions and handles intermittent connectivity                | 500kb asset budget                   |
+| Payment Flow       | MonCash Embedded Checkout | HTG deposit/withdrawal processing                                      | Fallback to NatCash API              |
+| Anti-Cheat         | DeviceInfo.js + FingerprintJS | Unique device binding                                              | IP geolocation (Haiti-only)         |
+
+**Key Adaptations for Haiti:**
+1. **Lightweight Bundle**  
+   - React.lazy() for code splitting  
+   - Compressed assets (WebP images, Brotli compression)
+
+2. **Network Resilience**  
+   ```javascript
+   // Offline answer queuing
+   const [submitAnswer] = useMutation(SUBMIT_ANSWER, {
+     onError: (err) => {
+       if (navigator.onLine === false) {
+         queueAnswerInIndexedDB(answer); // Sync when back online
+       }
+     }
+   });
 
 ### ⚙️ Backend (Django 5.0)
 ```python
