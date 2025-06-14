@@ -135,19 +135,19 @@ function createTimer() {
             .timer-circle {
                 width: 60px;
                 height: 60px;
-                border: 3px solid #AA2C86;
+                border: 3px solid #309ea3;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: relative;
-                background: rgba(170, 44, 134, 0.1);
+                background: solid #309ea3;
                 transition: all 0.3s ease;
             }
             
             .timer-circle.warning {
                 border-color: #ff6600;
-                background: rgba(255, 102, 0, 0.2);
+                background: #309ea3;
                 animation: timerWarning 0.5s ease-in-out infinite alternate;
             }
             
@@ -197,7 +197,7 @@ function createTimer() {
             .timer-circle.time-up {
                 animation: timeUp 0.5s ease-in-out;
                 border-color: #ff0000;
-                background: rgba(255, 0, 0, 0.3);
+                background: #309ea3;
             }
             
             @media screen and (max-width: 768px) {
@@ -277,7 +277,7 @@ function updateTimerDisplay() {
         
         // Visual progress indicator
         const progressPercentage = (timeLeft / 5) * 100;
-        timerCircle.style.background = `conic-gradient(#AA2C86 ${progressPercentage * 3.6}deg, rgba(170, 44, 134, 0.1) 0deg)`;
+        timerCircle.style.background = `conic-gradient(#00FF41 ${progressPercentage * 3.6}deg, rgba(170, 44, 134, 0.1) 0deg)`;
     }
 }
 
@@ -438,7 +438,7 @@ function optionSelected(answer){
 
 // Create celebration effect for correct answers
 function createCelebrationEffect() {
-    const colors = ['#00ff00', '#ffff00', '#ff6b9d', '#00a63d', '#AA2C86'];
+    const colors = ['#00ff00', '#ffff00', '#00BFFF', '#00a63d', '#00FF41'];
     
     for(let i = 0; i < 15; i++) {
         setTimeout(() => {
@@ -507,7 +507,7 @@ function updateProgressBar(percentage) {
             }
             .progress-fill {
                 height: 100%;
-                background: linear-gradient(90deg, #AA2C86, #ff6b9d);
+                background: linear-gradient(90deg, #00FF41, #00BFFF);
                 border-radius: 2px;
                 transition: width 0.5s ease;
                 width: 0%;
@@ -568,7 +568,7 @@ function showResultBox(){
             progressValue.textContent = `${progressStartValue}%`;
             
             // Dynamic color based on score
-            let color = '#AA2C86';
+            let color = '#00FF41';
             if (progressStartValue >= 80) color = '#00ff00';
             else if (progressStartValue >= 60) color = '#ffaa00';
             else if (progressStartValue >= 40) color = '#ff6600';
@@ -585,7 +585,7 @@ function showResultBox(){
 
 // Create mega celebration for excellent scores
 function createMegaCelebrationEffect() {
-    const colors = ['#00ff00', '#ffff00', '#ff6b9d', '#00a63d', '#AA2C86', '#ffffff'];
+    const colors = ['#00ff00', '#ffff00', '#00BFFF', '#00a63d', '#00FF41', '#ffffff'];
     
     for(let i = 0; i < 50; i++) {
         setTimeout(() => {
@@ -638,4 +638,11 @@ challengeBtn.onclick = () => {
     popupInfo.classList.add('active');
     playSound('click');
 }
+
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.getElementById('navbar');
+
+menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('show');
+});
 

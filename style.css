@@ -5,6 +5,17 @@
 */
 
 
+:root {
+    --primary-color: #2563eb;      /* Blue */
+    --secondary-color: #7c3aed;    /* Purple */
+    --accent-color: #059669;       /* Green */
+    --light-bg: #f8fafc;          /* Light background */
+    --card-bg: #ffffff;           /* White cards */
+    --text-primary: #1f2937;      /* Dark text */
+    --text-secondary: #6b7280;    /* Gray text */
+    --border-color: #e5e7eb;      /* Light borders */
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -13,14 +24,17 @@
 }
 
 body{
-    color: #fff;
-    background: #09001d;
+
+    
+    color: #1f2937; /* Change from #fff to dark text */
+    background: #f8fafc; /* Change from #09001d to light */
     overflow-x: hidden; /* Changed from overflow: hidden to allow vertical scrolling on mobile */
 }
 
 .main{
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     min-height: 100vh;
-    background: url('/Assets/background2.jpg') no-repeat;
+    background: url('/Assets/background3.jpg') no-repeat; 
     background-size: cover;
     background-position: center;
     pointer-events: auto;
@@ -32,48 +46,174 @@ body{
     pointer-events: none;
 }
 
-/* CSS for header*/
-.header{
-    background: transparent; 
+/* Refined header for vibrant background */
+.header {
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding: 20px 10%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap;
+
+    /* Semi-transparent dark gradient */
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 29, 58, 0.8), 
+        rgba(48, 158, 163, 0.6)
+    );
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    /* Light border for separation */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 16px 16px;
+
+    transition: background 0.3s, backdrop-filter 0.3s;
 }
 
-.logo{
+
+
+.logo {
     font-size: 32px;
-    color: #fff;
+    color: #1f2937;
     text-decoration: none;
     font-weight: 700;
     filter: drop-shadow(0 0 5px #09001d);
 }
 
-.navbar{
+.navbar {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 24px;
+
+    /* Add semi-transparent background */
+    background: rgba(255, 255, 255, 0.1);
+
+    /* Optional: stronger if you want more separation */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* Border and shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Smooth transition when hover or page resize */
+    transition: all 0.3s ease;
 }
 
-.navbar a{
+
+.navbar a {
     font-size: 18px;
-    color:#fff;
+    color: #1f2937;
     text-decoration: none;
     font-weight: 500;
     margin-left: 35px;
-    transition: .3s;
+    transition: all 0.3s ease;
+    padding: 10px 18px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.navbar a:hover::before {
+    left: 100%;
 }
 
 .navbar a:hover,
-.navbar a.active{
-    color: #AA2C86;
+.navbar a.active {
+    color: var(--primary-color);
+    background: rgba(59, 130, 246, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
 }
 
+/* Hamburger menu icon (hidden on desktop) */
+.menu-toggle {
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    font-size: 30px;
+    cursor: pointer;
+    color: #2563eb;
+    display: none;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.menu-toggle:hover {
+    background: rgba(37, 99, 235, 0.1);
+    transform: scale(1.1);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        border-top: 1px solid #e5e7eb;
+        margin-top: 20px;
+        padding: 25px 0;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar.show {
+        display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    .navbar a {
+        margin: 12px 20px;
+        text-align: center;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar a:hover {
+        background: rgba(59, 130, 246, 0.12);
+        transform: translateY(0) scale(1.02);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /*Css for container (home section)*/
 .container{
     display: flex;
@@ -91,47 +231,103 @@ body{
     padding: 20px; /* Added padding for mobile */
 }
 
-.home-content{
+.home-content {
+    /* Layout properties */
     max-width: 600px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    text-align: center; /* Ensure text is centered */
-    padding: 0 20px; /* Added horizontal padding */
+    text-align: center;
+    padding: 40px 30px;
+    margin: 0 20px;
+    border-radius: 15px;
+    
+    /* Modified background with transparent overlay */
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+        url('/Assets/background4.jpg');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(15px); /* Using the stronger blur value */
+    
+    /* Border styling */
+    border: 2px solid var(--primary-color);
+    
+    /* Box shadow effects */
+    box-shadow: 0 10px 25px rgba(48, 158, 163, 0.3),
+                0 0 25px rgba(170, 44, 134, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+    
+    /* Animation */
+    /*animation: homeGlow 3s ease-in-out infinite alternate; */
 }
 
+
 .home-content h1{
+    color: var(--primary-color);
     font-size: 78px;
     font-weight: 700;
-    text-shadow: 0 0 1px rgba(0, 0, 0, .3);
+    text-shadow: 0 2px 4px rgba(48, 158, 163, 0.2);
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(48, 158, 163, 0.8) 50%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .home-content p{
+    color: #64748b;
     font-size: 16px;
     text-align: center;
-    text-shadow: 0 0 10px rgba(0, 0, 0, .3);
     margin-bottom: 30px;
+    line-height: 1.6;
 }
 
 .home-content .start-btn{
     width: 190px;
     height: 55px;
-    background: #AA2C86;
-    border: 2px solid #fff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(48, 158, 163, 0.9) 100%);
+    border: 2px solid var(--primary-color);
     outline: none;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #AA2C86;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(48, 158, 163, 0.3);
     font-size: 18px;
-    color: #fff;
+    color: #ffffff;
     letter-spacing: 1px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-content .start-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
 }
 
 .home-content .start-btn:hover{
-    background: transparent;
-    box-shadow: none;
+    background: linear-gradient(135deg, rgba(48, 158, 163, 0.9) 0%, var(--primary-color) 100%);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(48, 158, 163, 0.4);
+    transform: translateY(-2px);
+}
+
+.home-content .start-btn:hover::before {
+    left: 100%;
+}
+
+.home-content .start-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 15px rgba(48, 158, 163, 0.3);
+}
+.home-content .start-btn:hover::before {
+    left: 100%;
 }
 
 /* css for quiz note section*/
@@ -158,7 +354,7 @@ body{
 
 .popup-info h2{
     font-size: 50px;
-    color: #AA2C86;
+    color: #309ea3;
     text-align: center;
 }
 
@@ -172,23 +368,29 @@ body{
 
 /* css for buttons exit and continue*/
 .popup-info .btn-group{
+    border-top: 1px solid #e5e7eb;
+
+
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #AA2C86;
+    border-top: 1px solid #00FF41;
     margin-top: 10px;
     padding: 15px 0 7px;
     gap: 10px; /* Added gap for better spacing */
 }
 
 .popup-info .btn-group .info-btn{
+    background: #2563eb;
+    border: 2px solid #2563eb;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 130px;
     height: 45px;
-    background: #AA2C86;
-    border: 2px solid #AA2C86;
+
+    border: 2px solid #00FF41;
     outline: none;
     border-radius: 6px;
     text-decoration: none;
@@ -202,22 +404,30 @@ body{
 }
 
 .popup-info .btn-group .info-btn:nth-child(1){
+    
     background: transparent;
-    color: #AA2C86;
+    color: #00FF41;
 }
 
 .popup-info .btn-group .info-btn:nth-child(1):hover{
-    background: #AA2C86;
+    background: #00FF41;
     color: #fff;
 }
 
 .popup-info .btn-group .info-btn:nth-child(2):hover{
-    background: #681650;
-    border-color: #681650;
+    background: linear-gradient(135deg, rgba(48, 158, 163, 0.9) 0%, var(--primary-color) 100%);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(48, 158, 163, 0.4);
+    transform: translateY(-2px);
 }
 
 /*Css for container (quiz-section)*/
 .quiz-section {
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+
     position: relative;
     left: -50%;
     width: 100%;
@@ -236,11 +446,13 @@ body{
 }
 
 .quiz-section .quiz-box{
+    background: #ffffff; /* White background */
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
     width: 500px;
     max-width: 90vw; /* Responsive width */
-    background: transparent;
-    border: 2px solid #AA2C86;
+    border: 2px solid #00FF41;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -261,30 +473,36 @@ body{
 }
 
 .quiz-box h1{
+    color: #1f2937;
     font-size: 32px;
     text-align: center;
-    background: linear-gradient(45deg, transparent, #AA2C86, transparent);
+    background: linear-gradient(45deg, transparent, #f37259, transparent);
+
     border-radius: 6px;
 }
 
 .quiz-box .quiz-header{
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
-    border-bottom: 2px solid #AA2C86;
+    border-bottom: 2px solid #00FF41;
     margin-bottom: 30px;
     flex-wrap: wrap; /* Allow wrapping on small screens */
     gap: 10px; /* Add gap when items wrap */
 }
 
 .quiz-header span{
+    color: #1f2937;
+
     font-size: 18px;
     font-weight: 500;
 }
 
 .quiz-header .header-score{
-    background: #AA2C86;
+        color: #ffffff;
+    background: #f37259;
     border-radius: 3px;
     padding: 7px;
     transition: all 0.3s ease;
@@ -312,22 +530,28 @@ body{
 }
 
 .quiz-box .question-text{
+    color: #1f2937;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.02));
+
     font-size: 24px;
     font-weight: 600;
     line-height: 1.4; /* Better line height for readability */
     animation: fadeInScale 0.5s ease-out;
     margin-bottom: 20px;
     padding: 15px;
-    background: linear-gradient(135deg, rgba(170, 44, 134, 0.1), rgba(170, 44, 134, 0.05));
+
     border-radius: 8px;
-    border-left: 4px solid #AA2C86;
+    border-left: 4px solid #00FF41;
 }
 
 .option-list .option{
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    color: #1f2937;
     width: 100%;
     padding: 12px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
+
     border-radius: 4px;
     font-size: 17px;
     margin: 15px 0;
@@ -368,9 +592,11 @@ body{
 }
 
 .option-list .option.correct{
-    background: linear-gradient(45deg, #09001d, #0d4a1a);
-    color: #00ff00;
-    border-color: #00a63d;
+    
+    background: linear-gradient(45deg, #ecfdf5, #d1fae5);
+    color: #065f46;
+    border-color: #059669;
+
     animation: correctPulse 0.6s ease-in-out;
     box-shadow: 0 0 20px rgba(0, 166, 61, 0.5);
 }
@@ -387,9 +613,9 @@ body{
 }
 
 .option-list .option.incorrect{
-    background: linear-gradient(45deg, #09001d, #4a0d1a);
-    color: #ff4444;
-    border-color: #a60045;
+    background: linear-gradient(45deg, #fef2f2, #fecaca);
+    color: #dc2626;
+    border-color: #ef4444;
     animation: incorrectShake 0.6s ease-in-out;
     box-shadow: 0 0 20px rgba(166, 0, 69, 0.5);
 }
@@ -413,7 +639,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 2px solid #AA2C86;
+    border-top: 2px solid #00FF41;
     padding-top: 20px;
     margin-top: 25px;
     flex-wrap: wrap; /* Allow wrapping */
@@ -455,8 +681,8 @@ body{
 
 .quiz-footer .next-btn.active{
     pointer-events: auto;
-    background: #AA2C86;
-    border-color: #AA2C86;
+    background: #00FF41;
+    border-color: #00FF41;
     color: #fff;
     animation: glow 2s infinite alternate;
     transform: scale(1);
@@ -504,8 +730,8 @@ body{
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 5px #AA2C86; }
-    50% { box-shadow: 0 0 20px #AA2C86, 0 0 30px #AA2C86; }
+    0%, 100% { box-shadow: 0 0 5px #00FF41; }
+    50% { box-shadow: 0 0 20px #00FF41, 0 0 30px #00FF41; }
 }
 
 @keyframes celebrate {
@@ -529,7 +755,7 @@ body{
     width: 500px;
     max-width: 90vw; /* Responsive width */
     background: transparent;
-    border: 2px solid #AA2C86;
+    border: 2px solid #00FF41;
     border-radius: 6px;
     padding: 20px;
     display: flex;
@@ -548,10 +774,13 @@ body{
 }
 
 .result-box h2{
+    background: linear-gradient(45deg, #2563eb, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 52px;
     text-align: center;
     animation: celebrate 0.6s ease-in-out;
-    background: linear-gradient(45deg, #AA2C86, #ff6b9d, #AA2C86);
+    background: linear-gradient(45deg, #00FF41, #00BFFF, #00FF41);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -574,12 +803,14 @@ body{
 }
 
 .percentage-container .circular-progress{
+    background: conic-gradient(#2563eb 3.6deg, rgba(0, 0, 0, .1) 0deg);
+
     position: relative;
     width: 250px;
     height: 250px;
     max-width: 80vw; /* Responsive size */
     max-height: 80vw; /* Responsive size */
-    background: conic-gradient(#AA2C86 3.6deg, rgba(255, 255, 255, .1) 0deg);
+    background: conic-gradient(#00FF41 3.6deg, rgba(255, 255, 255, .1) 0deg);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -587,6 +818,8 @@ body{
 }
 
 .percentage-container .circular-progress::before{
+    background-color: #ffffff;
+
     content: '';
     position: absolute;
     width: 210px;
@@ -611,6 +844,8 @@ body{
 }
 
 .percentage-container .score-text{
+    color: #1f2937;
+
     font-size: 26px;
     font-weight: 600;
     margin-top: 20px;
@@ -618,10 +853,13 @@ body{
 }
 
 .buttons button{
+    
+    background-color: #2563eb;
+    border: 2px solid #2563eb;
     width: 130px;
     height: 47px;
-    background-color: #AA2C86;
-    border: 2px solid #AA2C86;
+    background-color: #00FF41;
+    border: 2px solid #00FF41;
     outline: none;
     border-radius: 6px;
     font-size: 16px;
@@ -646,8 +884,9 @@ body{
 }
 
 .buttons button:hover{
-    background: #681650;
-    border-color: #681650;
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(170, 44, 134, 0.4);
 }
@@ -695,7 +934,7 @@ body{
 }
 
 .social-icons .icon-link:hover {
-    color: #AA2C86;
+    color: #00FF41;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
@@ -733,15 +972,22 @@ body{
     }
     
     .popup-info {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 30px rgba(253, 253, 253, 0.15);
         width: 90%;
         padding: 15px 20px;
     }
     
     .popup-info h2 {
+        color: #2563eb;
+
         font-size: 36px;
     }
     
     .popup-info .info {
+        color: #4b5563;
+
         font-size: 14px;
     }
     
@@ -820,6 +1066,7 @@ body{
     }
     
     .popup-info .btn-group .info-btn {
+        
         width: 100px;
         height: 40px;
         font-size: 14px;
@@ -997,7 +1244,7 @@ body{
     width: 600px;
     max-width: 90vw;
     background: transparent;
-    border: 2px solid #AA2C86;
+    border: 2px solid #00FF41;
     border-radius: 10px;
     padding: 30px;
     animation: slideInUp 0.6s ease-out;
@@ -1006,11 +1253,11 @@ body{
 .leaderboard-box h1 {
     font-size: 36px;
     text-align: center;
-    background: linear-gradient(45deg, transparent, #AA2C86, transparent);
+    background-color: var(--primary-color); /* Use primary color */
     border-radius: 8px;
     margin-bottom: 20px;
-    padding: 15px;
-    animation: glow 2s infinite alternate;
+    padding: 15px; 
+   /* animation: glow 2s infinite alternate; */
 }
 
 .leaderboard-header {
@@ -1018,7 +1265,7 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 2px solid #AA2C86;
+    border-bottom: 2px solid #00FF41;
     margin-bottom: 25px;
     flex-wrap: wrap;
     gap: 10px;
@@ -1032,8 +1279,8 @@ body{
 
 .back-home-btn {
     padding: 8px 16px;
-    background: #AA2C86;
-    border: 2px solid #AA2C86;
+    background: #00FF41;
+    border: 2px solid #00FF41;
     border-radius: 6px;
     color: #fff;
     font-size: 14px;
@@ -1072,7 +1319,7 @@ body{
 }
 
 .leaderboard-list::-webkit-scrollbar-thumb {
-    background: #AA2C86;
+    background: var(--primary-color);
     border-radius: 4px;
 }
 
@@ -1150,7 +1397,7 @@ body{
 .rank-badge {
     min-width: 50px;
     height: 50px;
-    background: #AA2C86;
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1211,7 +1458,7 @@ body{
 .player-score {
     font-size: 20px;
     font-weight: 700;
-    color: #AA2C86;
+    color: var(--primary-color);
     margin-right: 15px;
     background: rgba(170, 44, 134, 0.1);
     padding: 8px 12px;
@@ -1242,7 +1489,7 @@ body{
 .leaderboard-footer {
     text-align: center;
     padding-top: 20px;
-    border-top: 2px solid #AA2C86;
+    border-top: 2px solid var(--primary-color);
 }
 
 .leaderboard-footer p {
@@ -1252,7 +1499,7 @@ body{
 }
 
 .challenge-text {
-    color: #AA2C86;
+    color: var(--primary-color);
     font-weight: 600;
     animation: pulse 2s infinite;
 }
@@ -1264,7 +1511,7 @@ body{
 
 .challenge-btn {
     padding: 12px 24px;
-    background: linear-gradient(45deg, #AA2C86, #ff6b9d);
+    background: linear-gradient(45deg, var(--primary-color), #00BFFF);
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -1438,5 +1685,239 @@ body{
     
     .trophy {
         font-size: 16px;
+    }
+}
+
+/* Glowing Border Effects - Add this to your style.css */
+
+/* Main quiz box glowing border */
+.quiz-box {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #00FF41, #00BFFF, #00a63d, #00FF41) border-box;
+    box-shadow: 0 0 20px rgba(170, 44, 134, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+    animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+/* Leaderboard box glowing border */
+.leaderboard-box {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #gold, #ffaa00, #00BFFF, #gold) border-box;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+    animation: leaderboardGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* Options with glowing border on hover */
+.option {
+    border: 1px solid transparent;
+    background: linear-gradient(145deg, #0f1419, #1a1a2e) padding-box,
+                linear-gradient(45deg, transparent, rgba(170, 44, 134, 0.3)) border-box;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #00FF41, #00BFFF, #00FF41) border-box;
+    box-shadow: 0 0 15px rgba(170, 44, 134, 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Popup info box glowing border */
+
+/* Buttons with flat color using primary color */
+.start-btn, .next-btn, .tryAgain-btn, .goHome-btn, .challenge-btn, .back-home-btn {
+    border: none;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(37, 186, 235, 0.4); /* primary color with opacity */
+    transition: all 0.3s ease;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.start-btn:hover, .next-btn:hover, .tryAgain-btn:hover, .goHome-btn:hover, 
+.challenge-btn:hover, .back-home-btn:hover {
+    background: linear-gradient(135deg, rgba(48, 158, 163, 0.9) 0%, var(--primary-color) 100%);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(48, 158, 163, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Leaderboard items with subtle glow */
+.leaderboard-item {
+    border: 1px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(90deg, rgba(170, 44, 134, 0.2), rgba(255, 107, 157, 0.2)) border-box;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #16213e, #1a1a2e) padding-box,
+                linear-gradient(90deg, #00FF41, #00BFFF) border-box;
+    box-shadow: 0 0 20px rgba(170, 44, 134, 0.4);
+    transform: translateX(10px);
+}
+
+/* Special glow for top 3 ranks */
+.rank-1 {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #gold, #ffaa00, #gold) border-box;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.rank-2 {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #c0c0c0, #e5e5e5, #c0c0c0) border-box;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.4);
+}
+
+.rank-3 {
+    border: 2px solid transparent;
+    background: linear-gradient(145deg, #1a1a2e, #16213e) padding-box,
+                linear-gradient(45deg, #cd7f32, #daa520, #cd7f32) border-box;
+    box-shadow: 0 0 15px rgba(205, 127, 50, 0.4);
+}
+
+/* Keyframe animations for the glowing effects */
+@keyframes borderGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(170, 44, 134, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(170, 44, 134, 0.6),
+                    0 0 60px rgba(255, 107, 157, 0.2),
+                    inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+}
+
+@keyframes leaderboardGlow {
+    0% {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
+                    inset 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.7),
+                    0 0 80px rgba(255, 170, 0, 0.3),
+                    inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Pulsing effect for active elements */
+.quiz-section.active .quiz-box {
+    animation: borderGlow 2s ease-in-out infinite alternate,
+               gentlePulse 4s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .quiz-box, .leaderboard-box, .popup-info {
+        box-shadow: 0 0 15px rgba(170, 44, 134, 0.3),
+                    inset 0 0 15px rgba(255, 255, 255, 0.05);
+    }
+    
+    .option:hover {
+        box-shadow: 0 0 10px rgba(170, 44, 134, 0.4);
+    }
+}
+
+/* Add this CSS to your existing style.css file */
+
+
+
+/* Animation for home section glow */
+@keyframes homeGlow {
+    0% {
+        box-shadow: 0 0 25px rgba(170, 44, 134, 0.4),
+                    inset 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(170, 44, 134, 0.7),
+                    0 0 80px rgba(255, 107, 157, 0.3),
+                    inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Enhanced start button to match the aesthetic */
+
+.home-content .start-btn{
+    width: 190px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(48, 158, 163, 0.9) 100%);
+    border: 2px solid var(--primary-color);
+    outline: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(48, 158, 163, 0.3);
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-content .start-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+
+.home-content .start-btn:hover{
+    background: linear-gradient(135deg, rgba(48, 158, 163, 0.9) 0%, var(--primary-color) 100%);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(48, 158, 163, 0.4);
+    transform: translateY(-2px);
+}
+
+.home-content .start-btn:hover::before {
+    left: 100%;
+}
+
+.home-content .start-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 15px rgba(48, 158, 163, 0.3);
+}
+.home-content .start-btn:hover::before {
+    left: 100%;
+}
+
+
+@media screen and (max-width: 480px) {
+    .home-content {
+        padding: 20px 15px;
+        margin: 0 10px;
+        box-shadow: 0 0 15px rgba(170, 44, 134, 0.3),
+                    inset 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .home-content {
+        padding: 15px 10px;
+        margin: 0 5px;
     }
 }
