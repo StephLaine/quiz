@@ -16,6 +16,23 @@ graph TD
     H[Redis] --> B[Session Cache]
 ```
 ---
+```mermaid
+graph TD
+    A[React Frontend] -->|HTTPS API| B[Node.js Web Server]
+    B -->|Static Files| A
+    A -->|WS Real-Time| C[Firebase Firestore]
+    B -->|REST API| D[Django Backend]
+    D --> E[PostgreSQL]
+    D --> F[Redis Cache]
+    D --> G[MonCash/NatCash APIs]
+    C -->|Sync| D[Django Backend]
+    H[Admin Dashboard] --> D
+
+    style A fill:#61dafb,stroke:#333
+    style B fill:#90c53f,stroke:#333
+    style D fill:#092e20,stroke:#333,color:white
+```
+---
 
 ## 🧩 Technical Stack
 
